@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+VARIABLES                                         *memotaker-variables*
+
+
+g:loaded_memotaker                                *g:loaded_memotaker*
+
+
+g:memotaker_memo_save_dir                         *g:memotaker_memo_save_dir*
+
+
+g:memotaker_memo_file_name                        *g:memotaker_memo_file_name*
+
+
+g:memotaker_template_path                         *g:memotaker_template_path*
+
+
+---------------------------------------------------------------------------
+COMMANDS                                          *memotaker-commands*
+
+
+:TakeMemo                                         *TakeMemo*

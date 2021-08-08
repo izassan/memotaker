@@ -1,0 +1,7 @@
+TakeMemo	memotaker.txt	/*TakeMemo*
+g:loaded_memotaker	memotaker.txt	/*g:loaded_memotaker*
+g:memotaker_memo_file_name	memotaker.txt	/*g:memotaker_memo_file_name*
+g:memotaker_memo_save_dir	memotaker.txt	/*g:memotaker_memo_save_dir*
+g:memotaker_template_path	memotaker.txt	/*g:memotaker_template_path*
+memotaker-commands	memotaker.txt	/*memotaker-commands*
+memotaker-variables	memotaker.txt	/*memotaker-variables*
