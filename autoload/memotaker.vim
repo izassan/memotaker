@@ -18,6 +18,9 @@ endif
 if !exists("g:memotaker_memo_file_name")
     let g:memotaker_memo_file_name= "memo_%Y-%m-%d.md"
 endif
+if !exists("g:memotaker_filer")
+    let g:memotaker_filer=""
+endif
 
 
 function! memotaker#take() abort
@@ -43,5 +46,17 @@ function! memotaker#take() abort
         " テンプレートファイルのインポートを行う
         let l:template_buffer = readfile(g:memotaker_template_path)
         call append(0, l:template_buffer)
+    endif
+endfunction
+
+
+function! memotaker#view_all_memos() abort
+    if &l:modified
+        new
+    endif
+    if g:memotaker_filer == "fzf"
+        execute "FZF" g:memotaker_memo_save_dir
+    else
+        execute "edit" g:memotaker_memo_save_dir
     endif
 endfunction
