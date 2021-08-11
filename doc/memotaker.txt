@@ -1,21 +1,61 @@
----------------------------------------------------------------------------
-VARIABLES                                         *memotaker-variables*
+MEMOTAKER - SIMPLE TAKE A MEMO                      *memotaker*
+==============================================================================
+
+ Summary                                            |memotaker-summary|
+ VARIABLES                                          |memotaker-variables|
+ COMMANDS                                           |memotaker-commands|
+  :TakeMemo                                         |TakeMemo|
+  :ViewMemo                                         |ViewMemo|
 
 
-g:loaded_memotaker                                *g:loaded_memotaker*
+VARIABLES                                           *memotaker-variables*
+==============================================================================
+
+*g:memotaker_memo_save_dir*  Specify the location to save the memo file
 
 
-g:memotaker_memo_save_dir                         *g:memotaker_memo_save_dir*
+*g:memotaker_memo_file_name* Specify a file name for the memo
 
 
-g:memotaker_memo_file_name                        *g:memotaker_memo_file_name*
+*g:memotaker_template_path*  If there is a setting, it will be generated from
+                           the template when the memo is created
 
 
-g:memotaker_template_path                         *g:memotaker_template_path*
+*g:memotaker_filer*          Specify the filer or fizzy finder. Currently,
+                           only fzf is
+                           supported, and you can set it as follows
+>
+                           let g:memotaker_filer="fzf"
+<
 
 
----------------------------------------------------------------------------
-COMMANDS                                          *memotaker-commands*
+COMMANDS                                            *memotaker-commands*
+==============================================================================
 
 
-:TakeMemo                                         *TakeMemo*
+:TakeMemo                                           *TakeMemo*
+
+create markdown file to directory of |g:memotaker_save_dir|.
+If a non-existent directory is set, it will be created.
+The name of the file to be created is specified by
+|g:memotaker_memo_file_name|.
+
+
+
+:ViewMemo                                           *ViewMemo*
+
+Opens a memo created in the past. By default,
+it uses the filer set in the editor,
+but you can also use fzf by adding the following setting to vimrc
+>
+  let g:memotaker_filer="fzf"
+<
+
+LICENSE                                             *memotaker-license*
+=============================================================================
+The MIT License(MIT)
+
+Copyright (c) 2021 izassan
+
+=============================================================================
+vim:tw=78:sw=2:ts=2:ft=help:norl:nowrap:
