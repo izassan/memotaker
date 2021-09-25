@@ -47,6 +47,7 @@ function! memotaker#take() abort
         let l:template_buffer = readfile(g:memotaker_template_path)
         call append(0, l:template_buffer)
     endif
+    call cursor(1,1)
 endfunction
 
 
