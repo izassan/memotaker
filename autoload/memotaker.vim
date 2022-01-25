@@ -29,6 +29,20 @@ function! memotaker#generate_save_dir() abort
         call mkdir(g:memotaker_memo_save_dir, "p")
     " 1.1 存在するならば何もしない
     endif
+
+    let l:named_dir = g:memotaker_memo_save_dir . "/named"
+    if !isdirectory(l:named_dir)
+    " 1.1 存在しなければ作成する
+        call mkdir(l:named_dir, "p")
+    " 1.1 存在するならば何もしない
+    endif
+
+    let l:temp_dir = g:memotaker_memo_save_dir . "/temp"
+    if !isdirectory(l:temp_dir)
+    " 1.1 存在しなければ作成する
+        call mkdir(l:temp_dir, "p")
+    " 1.1 存在するならば何もしない
+    endif
 endfunction
 
 function! memotaker#take() abort
@@ -37,7 +51,7 @@ function! memotaker#take() abort
 
     " 2. 作成先パスを生成する
     let l:memofile_path =
-    \ g:memotaker_memo_save_dir . "/" .
+    \ g:memotaker_memo_save_dir . "/temp/" .
     \ strftime(g:memotaker_memo_file_name)
 
     " 3. 作成ファイルの存在を確認
@@ -56,14 +70,27 @@ function! memotaker#take() abort
 endfunction
 
 
-function! memotaker#view_all_memos() abort
+function! memotaker#view_temp_memos() abort
     if &l:modified
         new
     endif
+    let l:memotaker_temp_memo_save_dir = g:memotaker_memo_save_dir . "/temp"
     if g:memotaker_filer == "fzf"
-        execute "FZF" g:memotaker_memo_save_dir
+        execute "FZF" l:memotaker_temp_memo_save_dir
     else
-        execute "edit" g:memotaker_memo_save_dir
+        execute "edit" l:memotaker_temp_memo_save_dir
+    endif
+endfunction
+
+function! memotaker#view_named_memos() abort
+    if &l:modified
+        new
+    endif
+    let l:memotaker_named_memo_save_dir = g:memotaker_memo_save_dir . "/named"
+    if g:memotaker_filer == "fzf"
+        execute "FZF" l:memotaker_named_memo_save_dir
+    else
+        execute "edit" l:memotaker_named_memo_save_dir
     endif
 endfunction
 
@@ -76,7 +103,7 @@ function! memotaker#new_memo() abort
 
     " 3. 作成先パスを生成する
     let l:memofile_path =
-    \ g:memotaker_memo_save_dir . "/" .
+    \ g:memotaker_memo_save_dir . "/named/" .
     \ l:memofile_name . ".md"
 
     " 3. 作成ファイルの存在を確認
